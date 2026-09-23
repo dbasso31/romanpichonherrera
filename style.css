@@ -61,7 +61,7 @@ html, body {
   font-family: var(--font-serif);
   font-size: 17px;
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.015em;
 }
 
 /* ---- Transition de page (fade + slide, easing decimalstudios.com) ---- */
@@ -148,32 +148,6 @@ nav.main .nav-link.is-active::before {
   transform: scaleX(1) translateZ(0);
 }
 
-/* ---- Pied de page ---- */
-footer.site {
-  border-top: 1px solid var(--line);
-  padding: 60px 0 40px;
-}
-
-footer.site .wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 40px;
-}
-
-footer.site ul {
-  list-style: none;
-  display: flex;
-  gap: 24px;
-  margin: 0;
-  padding: 0;
-}
-
-footer.site span {
-  color: var(--muted);
-  cursor: default;
-}
-
 /* ---- Hero (commun aux deux pages) ---- */
 .hero {
   padding-top: clamp(60px, 12vw, 160px);
@@ -191,11 +165,6 @@ footer.site span {
 }
 
 @media (max-width: 767px) {
-  footer.site .wrap {
-    flex-direction: column;
-    gap: 24px;
-  }
-
   .hero { padding-bottom: 24px; }
 }
 
