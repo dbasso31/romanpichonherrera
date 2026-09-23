@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Roman Pichon Herrera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="dark" data-page="work">
+
+<div class="page">
+
+  <header class="site">
+    <div class="wrap">
+      <div class="logo">Roman Pichon Herrera</div>
+      <nav class="main">
+        <ul>
+          <li><span class="active">Work</span></li>
+          <li><a href="info.html" class="nav-link">Info</a></li>
+          <li><span>Instagram</span></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="work-grid">
+        <article class="item c-half">
+          <div class="thumb" style="--ratio:calc(16 / 9)">
+            <button type="button" class="yt-facade" data-yt-id="54fea7wuV6s" aria-label="Lancer la vidéo">
+              <img src="https://img.youtube.com/vi/54fea7wuV6s/sddefault.jpg" alt="" loading="lazy" />
+            </button>
+          </div>
+          <h2>The Blaze - Territory</h2>
+          <p class="client">Produced by Roman Pichon Herrera (Iconoclast)</p>
+        </article>
+
+        <article class="item c-wide">
+          <div class="thumb" style="--ratio:1.78">
+            <button type="button" class="yt-facade" data-yt-id="XwxA_oOzMDY" aria-label="Lancer la vidéo">
+              <img src="https://img.youtube.com/vi/XwxA_oOzMDY/sddefault.jpg" alt="" loading="lazy" />
+            </button>
+          </div>
+          <h2>Ibeyi - Aset</h2>
+          <p class="client">Directed by Roman Pichon Herrera & Corry Van Rhijn</p>
+        </article>
+
+        <article class="item c-half">
+          <div class="thumb" style="--ratio:1.33"></div>
+          <h2>Titre du projet 03</h2>
+          <p class="client">Nom du client</p>
+        </article>
+
+        <article class="item c-third-offset">
+          <div class="thumb" style="--ratio:1"></div>
+          <h2>Titre du projet 04</h2>
+          <p class="client">Nom du client</p>
+        </article>
+
+        <article class="item c-third">
+          <div class="thumb" style="--ratio:0.8"></div>
+          <h2>Titre du projet 05</h2>
+          <p class="client">Nom du client</p>
+        </article>
+
+        <article class="item c-half-offset">
+          <div class="thumb" style="--ratio:1.6"></div>
+          <h2>Titre du projet 06</h2>
+          <p class="client">Nom du client</p>
+        </article>
+
+        <article class="item c-half">
+          <div class="thumb" style="--ratio:1.5"></div>
+          <h2>Titre du projet 07</h2>
+          <p class="client">Nom du client</p>
+        </article>
+
+        <article class="item c-third-offset">
+          <div class="thumb" style="--ratio:1"></div>
+          <h2>Titre du projet 08</h2>
+          <p class="client">Nom du client</p>
+        </article>
+
+        <article class="item c-wide">
+          <div class="thumb" style="--ratio:1.78"></div>
+          <h2>Titre du projet 09</h2>
+          <p class="client">Nom du client</p>
+        </article>
+
+        <article class="item c-full">
+          <div class="thumb" style="--ratio:2.2"></div>
+          <h2>Titre du projet 10</h2>
+          <p class="client">Nom du client</p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <div class="logo">Roman Pichon Herrera</div>
+      <ul>
+        <li><span>Index</span></li>
+        <li><span>Instagram</span></li>
+        <li><span>Newsletter</span></li>
+        <li><span>Confidentialité</span></li>
+      </ul>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var page = document.querySelector('.page');
+
+    function reveal() {
+      page.classList.remove('is-leaving');
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          page.classList.add('is-visible');
+        });
+      });
+    }
+
+    reveal();
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) reveal();
+    });
+
+    document.querySelectorAll('a[href$=".html"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var href = link.getAttribute('href');
+        e.preventDefault();
+        page.classList.remove('is-visible');
+        page.classList.add('is-leaving');
+        setTimeout(function () {
+          window.location.href = href;
+        }, 800);
+      });
+    });
+
+    document.querySelectorAll('.yt-facade').forEach(function (facade) {
+      facade.addEventListener('click', function () {
+        var id = facade.getAttribute('data-yt-id');
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+        iframe.title = 'Lecteur vidéo YouTube';
+        iframe.frameBorder = '0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        facade.replaceWith(iframe);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

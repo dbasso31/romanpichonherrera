@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Info — Roman.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="light" data-page="info">
+
+<div class="page">
+
+  <header class="site">
+    <div class="wrap">
+      <div class="logo">Roman.</div>
+      <nav class="main">
+        <ul>
+          <li><a href="index.html" class="nav-link">Work</a></li>
+          <li><span class="nav-link is-active" style="cursor:default;">Info</span></li>
+          <li><span>Contact</span></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <h1>Une approche simple, au service de chaque projet.</h1>
+        <p>Un texte générique de présentation vient ici : le positionnement, la manière de travailler, et ce qui distingue ce studio dans son approche des projets.</p>
+      </section>
+
+      <section class="block">
+        <h2>Méthode</h2>
+        <div class="method-list">
+          <div class="method-item">
+            <h3>Une équipe dédiée</h3>
+            <p>Un texte générique décrivant comment les projets sont accompagnés de bout en bout par une petite équipe stable.</p>
+          </div>
+          <div class="method-item">
+            <h3>Un cadre sur mesure</h3>
+            <p>Un texte générique expliquant que chaque projet reçoit une organisation adaptée à ses besoins, sans processus figé.</p>
+          </div>
+          <div class="method-item">
+            <h3>Des outils ouverts</h3>
+            <p>Un texte générique précisant que les choix techniques sont faits au cas par cas, sans dépendance à un outil unique.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Expertise</h2>
+        <div class="block-content">
+          <p>Un texte générique présentant les grands domaines d'intervention, de la stratégie initiale jusqu'à la réalisation finale du projet.</p>
+          <ul class="tag-list">
+            <li>Stratégie</li>
+            <li>Écriture</li>
+            <li>Design</li>
+            <li>Développement</li>
+            <li>Édition</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Équipe</h2>
+        <div class="team-list">
+          <div class="team-item">
+            <h3>Nom Prénom</h3>
+            <p>Rôle générique</p>
+          </div>
+          <div class="team-item">
+            <h3>Nom Prénom</h3>
+            <p>Rôle générique</p>
+          </div>
+          <div class="team-item">
+            <h3>Nom Prénom</h3>
+            <p>Rôle générique</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Distinctions</h2>
+        <div class="block-content">
+          <p>Un texte générique mentionnant, de façon simple, une reconnaissance obtenue pour la qualité du travail réalisé.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <div class="logo">Roman.</div>
+      <ul>
+        <li><span>Index</span></li>
+        <li><span>Instagram</span></li>
+        <li><span>Newsletter</span></li>
+        <li><span>Confidentialité</span></li>
+      </ul>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var page = document.querySelector('.page');
+
+    function reveal() {
+      page.classList.remove('is-leaving');
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          page.classList.add('is-visible');
+        });
+      });
+    }
+
+    reveal();
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) reveal();
+    });
+
+    document.querySelectorAll('a[href$=".html"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var href = link.getAttribute('href');
+        e.preventDefault();
+        page.classList.remove('is-visible');
+        page.classList.add('is-leaving');
+        setTimeout(function () {
+          window.location.href = href;
+        }, 800);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
