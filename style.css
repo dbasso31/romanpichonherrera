@@ -44,6 +44,7 @@ html, body {
   color: var(--fg);
   font-family: var(--font-family);
   font-size: 14px;
+  line-height: 22px;
   font-weight: var(--font-weight-base);
   -webkit-font-smoothing: antialiased;
 }
@@ -102,6 +103,12 @@ nav.main ul {
   gap: 28px;
   margin: 0;
   padding: 0;
+}
+
+@media (max-width: 400px) {
+  nav.main ul {
+    gap: 16px;
+  }
 }
 
 nav.main span {
@@ -174,7 +181,6 @@ footer.site span {
 }
 
 .hero p {
-  line-height: 1.6;
   color: var(--muted);
   max-width: 48ch;
   margin: 0;
@@ -259,7 +265,6 @@ footer.site span {
 }
 
 .item .client {
-  line-height: 30px;
   color: var(--muted);
   margin: 0;
 }
@@ -279,18 +284,30 @@ footer.site span {
 
 @media (max-width: 767px) {
   .work-grid {
-    grid-template-columns: 1fr;
+    column-gap: 12px;
     row-gap: 56px;
     padding-top: 48px;
     padding-bottom: 90px;
   }
 
+  /* écho du comportement mobile de decimalstudios.com/work : les blocs ne
+     passent pas tous en pleine largeur — certains restent plus étroits,
+     et les "offset" gardent leur décalage vers la droite */
+  .item.c-full,
+  .item.c-wide {
+    grid-column: 1 / span 12;
+  }
+
   .item.c-half,
-  .item.c-wide,
-  .item.c-third,
-  .item.c-third-offset,
-  .item.c-half-offset,
-  .item.c-full {
-    grid-column: 1 / -1;
+  .item.c-third {
+    grid-column: 1 / span 9;
+  }
+
+  .item.c-half-offset {
+    grid-column: 5 / span 8;
+  }
+
+  .item.c-third-offset {
+    grid-column: 6 / span 7;
   }
 }
