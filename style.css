@@ -24,6 +24,7 @@
   --muted: #8a8a8a;
   --line: #1a1a1a;
   --placeholder: #2b2b2b; /* rectangles gris à la place des images */
+  --highlight: #fff3a3; /* jaune pâle du stabilo (texte entre <b>) */
 }
 
 /* ---- Thème clair (utilisé par info.html via <body data-theme="light">) ---- */
@@ -162,6 +163,22 @@ nav.main .nav-link.is-active::before {
 
 .hero p + p {
   margin-top: 20px;
+}
+
+/* info.html : le contenu principal fait au moins 1000px de haut
+   (le .wrap du header n'est pas concerné) */
+body[data-page="info"] main .wrap {
+  min-height: 1000px;
+}
+
+/* Effet stabilo : tout texte entre <b> est surligné en jaune pâle
+   (pas de gras, pour rester dans les 2 styles de texte du site) */
+b {
+  font-weight: inherit;
+  background: var(--highlight);
+  padding: 0 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 @media (max-width: 767px) {
