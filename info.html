@@ -73,5 +73,30 @@
   })();
 </script>
 
+<script>
+  (function () {
+    var marks = document.querySelectorAll('b');
+    if (!marks.length) return;
+
+    var current = 0;
+
+    // tracé 1,4s -> reste visible 1,2s -> effacé 0,9s ; un nouveau <b> toutes les 3,5s
+    function step() {
+      var el = marks[current];
+      el.classList.remove('is-erasing');
+      el.classList.add('is-on');
+      setTimeout(function () {
+        el.classList.remove('is-on');
+        el.classList.add('is-erasing');
+        setTimeout(function () { el.classList.remove('is-erasing'); }, 900);
+      }, 2600);
+      current = (current + 1) % marks.length;
+    }
+
+    step();
+    setInterval(step, 3500);
+  })();
+</script>
+
 </body>
 </html>

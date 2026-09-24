@@ -171,14 +171,29 @@ body[data-page="info"] main .wrap {
   min-height: 1000px;
 }
 
-/* Effet stabilo : tout texte entre <b> est surligné en jaune pâle
-   (pas de gras, pour rester dans les 2 styles de texte du site) */
+/* Effet stabilo : le texte entre <b> est invisible par défaut. Quand le
+   script ajoute .is-on, le surlignage jaune pâle se trace de gauche à droite
+   comme un coup de marqueur (le fond grandit de 0% à 100% de la largeur, et
+   suit les retours à la ligne l'un après l'autre). .is-erasing l'efface
+   dans le même sens. (pas de gras : on reste dans les 2 styles de texte) */
 b {
   font-weight: inherit;
-  background: var(--highlight);
   padding: 0 2px;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  background-image: linear-gradient(var(--highlight), var(--highlight));
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 0% 100%;
+}
+
+b.is-on {
+  background-size: 100% 100%;
+  transition: background-size 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+b.is-erasing {
+  background-position: 100% 0;
+  background-size: 0% 100%;
+  transition: background-size 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (max-width: 767px) {
