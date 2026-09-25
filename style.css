@@ -58,11 +58,19 @@ html, body {
 
 /* ---- Style "SERIF" : logo + titres de projet ---- */
 .logo,
-.item h2 {
+.item h2,
+.signature {
   font-family: var(--font-serif);
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.015em;
+}
+
+.signature {
+  text-align: center;
+  color: #fff;
+  margin: 100px 0 0;
+  padding-bottom: 60px;
 }
 
 /* ---- Transition de page (fade + slide, easing decimalstudios.com) ---- */
