@@ -66,6 +66,11 @@ html, body {
   letter-spacing: 0.015em;
 }
 
+.logo a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .signature {
   text-align: center;
   color: #fff;
@@ -171,6 +176,38 @@ nav.main .nav-link.is-active::before {
 
 .hero p + p {
   margin-top: 20px;
+}
+
+/* info.html : texte à gauche, image à droite (grille 12 colonnes comme Work) ;
+   en mobile l'image passe sous le texte */
+.info-layout {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter-lg);
+  align-items: start;
+  padding-top: clamp(60px, 12vw, 160px);
+}
+
+.info-layout .hero {
+  grid-column: 1 / span 5;
+  padding-top: 0;
+}
+
+.info-img {
+  grid-column: 8 / span 5;
+  margin: 0;
+}
+
+.info-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .info-layout { column-gap: 12px; }
+  .info-layout .hero { grid-column: 1 / -1; }
+  .info-img { grid-column: 1 / -1; margin-top: 24px; }
 }
 
 /* info.html : le contenu principal fait au moins 1000px de haut

@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body data-theme="light" data-page="info">
 
@@ -15,7 +15,7 @@
 
   <header class="site">
     <div class="wrap">
-      <div class="logo">Roman Pichon Herrera</div>
+      <div class="logo"><a href="index.html">Roman Pichon Herrera</a></div>
       <nav class="main">
         <ul>
           <li><a href="index.html" class="nav-link">Work</a></li>
@@ -28,13 +28,16 @@
 
   <main>
     <div class="wrap">
+      <div class="info-layout">
       <section class="hero">
         <p>His career spans <b>advertising, music videos and fiction</b>, with experience at renowned production companies such as <b>Iconoclast, Division, Partizan and CANADA</b>. In 2019, he co-founded <b>Diplomats</b>, developing a cross-disciplinary approach combining production, art direction and directing.</p>
         <p>He has collaborated with artists including <b>The Blaze, Pharrell Williams, Drake, Kanye West, Pusha T, Dizzee Rascal, Jamie xx, Diplo and Ibeyi</b>, as well as brands such as <b>Louis Vuitton, Hermès and Kenzo</b>.</p>
         <p>His work has been <b>widely recognised and awarded</b>, including a <b>Grammy Award</b> for Pharrell Williams’ Happy and <b>Producer of the Year at the UK Music Video Awards</b>. Today, he develops his own projects as a <b>Director and Creative Director</b>, with a cinematic and instinctive approach shaped by his <b>Franco-Cuban roots</b>.</p>
       </section>
-
-
+      <figure class="info-img">
+        <img src="img/info.jpg" alt="" />
+      </figure>
+      </div>
     </div>
   </main>
 
@@ -92,8 +95,12 @@
       current = (current + 1) % marks.length;
     }
 
-    step();
-    setInterval(step, 3500);
+    // rien n'est surligné au chargement : on attend la fin du fondu d'entrée
+    // de la page (0,8s) + une courte pause avant de lancer la première animation
+    setTimeout(function () {
+      step();
+      setInterval(step, 3500);
+    }, 1500);
   })();
 </script>
 
