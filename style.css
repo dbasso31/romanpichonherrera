@@ -73,7 +73,7 @@ html, body {
 
 .signature {
   text-align: center;
-  color: #fff;
+  color: var(--fg); /* blanc sur Work (thème sombre), #111110 sur Info (thème clair) */
   margin: 100px 0 0;
   padding-bottom: 60px;
 }
@@ -214,6 +214,17 @@ nav.main .nav-link.is-active::before {
    (le .wrap du header n'est pas concerné) */
 body[data-page="info"] main .wrap {
   min-height: 1000px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* le "31" se colle en bas du bloc min-height (avec 100px d'air au minimum) */
+body[data-page="info"] .info-layout {
+  padding-bottom: 100px;
+}
+
+body[data-page="info"] .signature {
+  margin-top: auto;
 }
 
 /* Effet stabilo : le texte entre <b> est invisible par défaut. Quand le

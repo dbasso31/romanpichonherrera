@@ -14,9 +14,10 @@ Design inspiré de decimalstudios.com (`/work` et `/info`), volontairement simpl
 
 | Fichier | Rôle |
 |---|---|
-| `index.html` | Page "Work" — thème sombre, grille de projets |
-| `info.html` | Page "Info" — thème clair, texte |
+| `index.html` | Page "Work" — thème sombre, grille de 18 projets vidéo, "31" centré en bas |
+| `info.html` | Page "Info" — thème clair, texte + image à droite, animation stabilo |
 | `style.css` | Feuille de style partagée (toute la typo, couleurs, layout) |
+| `img/` | Vignettes locales de certaines vidéos (`*.jpg`) et image de la page Info (`info.jpg`) |
 | `info old.html` | Ancienne version d'info.html (backup, non référencée nulle part) |
 
 Le JS est inline en bas de chaque page (pas de fichier `.js` séparé).
@@ -33,7 +34,7 @@ Puis ouvrir `http://localhost:8000/index.html`.
 
 **Depuis un mobile sur le même Wi-Fi** : utiliser l'IP locale du Mac (`ipconfig getifaddr en0`), ex. `http://192.168.1.149:8000/index.html`. Le pare-feu macOS peut bloquer Python.
 
-**Cache** : si une modif CSS ne s'affiche pas (surtout Safari mobile), fermer l'onglet et le rouvrir, ou ajouter un paramètre de version (`style.css?v=2`) au `<link>`.
+**Cache** : si une modif CSS ne s'affiche pas (surtout Safari mobile), fermer l'onglet et le rouvrir, ou incrémenter le paramètre de version du `<link>` (actuellement `style.css?v=5` dans les deux pages — à incrémenter dans `index.html` **et** `info.html`).
 
 ## Système de style
 
@@ -49,7 +50,7 @@ Les couleurs sont des variables CSS (`--bg`, `--fg`, `--muted`, `--line`, `--pla
 ### 2 styles de texte seulement
 
 1. **Inter 14px**, `line-height: 22px`, weight 300 — défini une seule fois sur `html, body`, hérité par tout le reste (nav, paragraphes, `.client`...).
-2. **"SERIF" : Times New Roman 17px**, weight 400, letter-spacing `0.015em` — défini une seule fois sur `.logo, .item h2`.
+2. **"SERIF" : Times New Roman 17px**, weight 400, letter-spacing `0.015em` — défini une seule fois sur `.logo, .item h2, .signature`.
 
 Ne pas ajouter d'autres `font-size` / `font-family` ailleurs sans raison : c'est un choix de design assumé.
 
@@ -78,30 +79,39 @@ Grille CSS à **12 colonnes**, `column-gap: 40px`, `row-gap: 100px`. Chaque `.it
 
 Tout le contenu est dans un `<div class="page">`. Au chargement : fade + slide-up (`opacity .8s ease-out, transform .8s ease-in-out`, repris de decimalstudios.com). Au clic sur un lien `a[href$=".html"]`, le script ajoute `.is-leaving` (fade + slide vers le haut) puis navigue après 800ms.
 
+### Signature "31" (index.html)
+
+`<p class="signature">31</p>` sous la grille : style SERIF, blanc, centré (`text-align: center`), 100px de marge au-dessus (comme le `row-gap` de la grille) et 60px de padding en dessous.
+
+### Logo
+
+Sur `info.html`, le logo est un lien vers `index.html` (`.logo a` : couleur héritée, sans soulignement). Il passe par la même transition de page que la nav. Sur `index.html`, le logo n'est pas cliquable.
+
+### Page Info
+
+- **Mise en page** : `.info-layout` est une grille à 12 colonnes (`column-gap: 40px`, même logique que Work). Le texte (`.hero`) occupe les colonnes 1 à 5, l'image (`figure.info-img`, `img/info.jpg`) les colonnes 8 à 12, alignée en haut du texte. Sous 768px, tout passe en pleine largeur et l'image se place sous le texte.
+- **Stabilo** : le texte entre `<b>` est surligné en jaune pâle (`--highlight`). Rien n'est surligné au chargement ; la première animation démarre 1,5s après (fondu d'entrée de la page 0,8s + pause), puis un `<b>` s'anime toutes les 3,5s, à tour de rôle. Le fond se trace de gauche à droite (1,4s), reste visible 1,2s, puis s'efface dans le même sens (0,9s). Les durées de tracé/effacement sont dans `style.css` (`b.is-on`, `b.is-erasing`), le rythme et le délai initial dans le script en bas de `info.html`.
+
 ### Embed YouTube (facade cliquable)
 
 Pour éviter d'afficher l'UI YouTube avant le clic : chaque vidéo est un `<button class="yt-facade" data-yt-id="...">` contenant juste une `<img>` (miniature `https://img.youtube.com/vi/ID/sddefault.jpg`). Au clic, un script remplace le bouton par un vrai `<iframe>` YouTube avec `autoplay=1`.
 
-- Utiliser `sddefault.jpg` (et non `maxresdefault.jpg`, qui renvoie 404 pour certaines vidéos).
-- Le ratio du conteneur `.thumb` doit correspondre au ratio natif de la vidéo (`--ratio: calc(16 / 9)` pour du 16:9), sinon YouTube ajoute des bandes noires.
+- Par défaut, utiliser `sddefault.jpg` (et non `maxresdefault.jpg`, qui renvoie 404 pour certaines vidéos).
+- Pour certaines vidéos, la vignette est une image locale dans `img/` (`<img src="img/Xxx.jpg">`) à la place de la miniature YouTube (9 projets : Major Lazer, Pharrell, Jamie xx, Drake, Lana Del Rey, Woodkid - I love You, Is Tropical, Tyga, Dizzee Rascal).
+- Le ratio du conteneur `.thumb` (`style="--ratio:..."`) doit correspondre au ratio natif de la vidéo, sinon YouTube ajoute des bandes noires. Valeurs utilisées : `1.78` (16:9, la majorité) et `2.45` (2 vidéos en cinémascope).
 
-Vidéos actuellement intégrées :
-- `54fea7wuV6s` — The Blaze - Territory
-- `XwxA_oOzMDY` — Ibeyi - Aset
-
-Les autres `.item` (projets 03 à 10) sont encore des rectangles gris placeholders (`.thumb` vide) avec des titres/clients génériques.
+Les 18 projets de la page Work sont tous de vraies vidéos, dans cet ordre : Ibeyi - Aset, Ibeyi - Moshpit, Ibeyi - Offerings, Kenzo - Pre Fall 2016, The Blaze - Territory, Major Lazer - Get Free, Pharrell Williams - Happy, Jamie xx - Gosh, Louis Vuitton - Journey home for the holidays, Drake - Energy, Isabel Marant - SS23, Skrillex - Doompy Poomp, Lana Del Rey - Born to Die, Woodkid - I love You, Woodkid - The Golden age, Is Tropical - Dancing Anymore, Tyga - Bugatti, Dizzee Rascal - Couple of Stacks. Les IDs YouTube sont dans les `data-yt-id` de `index.html`.
 
 ## Décisions de design notables
 
-- Textes de la page Info = placeholders (lorem ipsum + filler), à remplacer par du vrai contenu.
-- Aucun footer (supprimé volontairement des deux pages).
-- Les rectangles gris (`--placeholder`) remplacent les images du site d'origine ; ce n'est pas un bug, c'est le comportement voulu pour les projets sans média.
+- Aucun footer (supprimé volontairement des deux pages) ; le seul élément de fin de page sur Work est le "31" centré.
+- Les rectangles gris (`--placeholder`, `.thumb` vide) restent le comportement voulu pour tout projet sans média, mais il n'y en a plus actuellement.
+- Le texte de la page Info est le vrai texte (plus de lorem ipsum).
 
 ## Reste à faire / idées
 
-- Remplacer les projets placeholders (03 à 10) par de vrais contenus (vidéo ou image).
-- Remplacer le texte placeholder de `info.html`.
 - Supprimer `info old.html` s'il ne sert plus.
 - Ajouter un `.gitignore` (au moins `.DS_Store`).
+- `img/info.jpg` ne fait que 640px de large : le remplacer par une version plus grande pour un rendu net sur écran Retina.
 - Le lien "Contact" de la nav d'origine a été remplacé par "Insta" (pas de page contact pour l'instant).
-- Vérifier le rendu sur Safari iOS réel (comportement mobile de la grille, transitions).
+- Vérifier le rendu sur Safari iOS réel (comportement mobile de la grille, transitions, mise en page de la page Info).
