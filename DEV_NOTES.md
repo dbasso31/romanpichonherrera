@@ -100,7 +100,7 @@ Pour éviter d'afficher l'UI YouTube avant le clic : chaque vidéo est un `<butt
 - Pour certaines vidéos, la vignette est une image locale dans `img/` (`<img src="img/Xxx.jpg">`) à la place de la miniature YouTube (9 projets : Major Lazer, Pharrell, Jamie xx, Drake, Lana Del Rey, Woodkid - I love You, Is Tropical, Tyga, Dizzee Rascal).
 - Le ratio du conteneur `.thumb` (`style="--ratio:..."`) doit correspondre au ratio natif de la vidéo, sinon YouTube ajoute des bandes noires. Valeurs utilisées : `1.78` (16:9, la majorité) et `2.45` (2 vidéos en cinémascope).
 
-Les 18 projets de la page Work sont tous de vraies vidéos, dans cet ordre : Ibeyi - Aset, Ibeyi - Moshpit, Ibeyi - Offerings, Kenzo - Pre Fall 2016, The Blaze - Territory, Major Lazer - Get Free, Pharrell Williams - Happy, Jamie xx - Gosh, Louis Vuitton - Journey home for the holidays, Drake - Energy, Isabel Marant - SS23, Skrillex - Doompy Poomp, Lana Del Rey - Born to Die, Woodkid - I love You, Woodkid - The Golden age, Is Tropical - Dancing Anymore, Tyga - Bugatti, Dizzee Rascal - Couple of Stacks. Les IDs YouTube sont dans les `data-yt-id` de `index.html`.
+Les 18 projets de la page Work sont tous de vraies vidéos, dans cet ordre : Ibeyi - Aset, Ibeyi - Moshpit, Ibeyi - Offerings, Jamie xx - Gosh, The Blaze - Territory, Major Lazer - Get Free, Pharrell Williams - Happy, Kenzo - Pre Fall 2016, Louis Vuitton - Journey home for the holidays, Drake - Energy, Isabel Marant - SS23, Skrillex - Doompy Poomp, Lana Del Rey - Born to Die, Woodkid - I love You, Woodkid - The Golden age, Is Tropical - Dancing Anymore, Tyga - Bugatti, Dizzee Rascal - Couple of Stacks. Les IDs YouTube sont dans les `data-yt-id` de `index.html`.
 
 ## Décisions de design notables
 
