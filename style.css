@@ -71,6 +71,12 @@ html, body {
   text-decoration: none;
 }
 
+.contact {
+  text-align: left;
+  color: var(--muted);
+  margin: 0;
+}
+
 .signature {
   text-align: center;
   color: var(--fg); /* blanc sur Work (thème sombre), #111110 sur Info (thème clair) */
@@ -135,8 +141,10 @@ nav.main span.active {
   border-bottom: 1px solid #8a8a8a;
 }
 
-/* nav-link : même soulignement + easing que la nav de decimalstudios.com (.link-secondary) */
-nav.main .nav-link {
+/* soulignement animé partagé : nav (.nav-link) et lien de contact (.contact a),
+   même easing que .link-secondary de decimalstudios.com */
+nav.main .nav-link,
+.contact a {
   position: relative;
   display: inline-block;
   color: var(--muted);
@@ -144,7 +152,8 @@ nav.main .nav-link {
   padding-bottom: 2px;
 }
 
-nav.main .nav-link::before {
+nav.main .nav-link::before,
+.contact a::before {
   content: "";
   position: absolute;
   left: 0;
@@ -158,7 +167,8 @@ nav.main .nav-link::before {
 }
 
 nav.main .nav-link:hover::before,
-nav.main .nav-link.is-active::before {
+nav.main .nav-link.is-active::before,
+.contact a:hover::before {
   transform: scaleX(1) translateZ(0);
 }
 
